@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+org.eclipse.php.debug.core.xdebugDebuggerSettingsProvider=<settings><proxyEnable>false</proxyEnable><clientPort>9000</clientPort><ownerId>zend-studio-builtin-php</ownerId><proxyIdeKey>ECLIPSE_DBGP_xxx</proxyIdeKey><proxyAddress></proxyAddress></settings>
+org.eclipse.php.debug.core.zendDebuggerSettingsProvider=<settings><clientIp>192.168.137.1,192.168.0.109,127.0.0.1</clientIp><clientPort>10137</clientPort><ownerId>php-server-631996d1-f2b6-41bb-99a3-143d5595ea18</ownerId><responseTimeout>60000</responseTimeout></settings>\u0005<settings><clientIp>192.168.137.1,192.168.0.109,127.0.0.1</clientIp><clientPort>10137</clientPort><ownerId>php-server-02738877-9c86-4c35-b785-9f49156a4f14</ownerId><responseTimeout>60000</responseTimeout></settings>
+org.eclipse.php.debug.core.zendExtendedDebuggerSettingsProvider=<settings><clientPort>10137</clientPort><ownerId>zend-studio-builtin-php</ownerId></settings>
+org.eclipse.php.debug.coredefaultPHP=Built-in PHP
