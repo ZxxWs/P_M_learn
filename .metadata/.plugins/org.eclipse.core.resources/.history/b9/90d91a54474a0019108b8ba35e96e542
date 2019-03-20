@@ -1,0 +1,39 @@
+<?php
+//对字段的操作
+
+$host="127.0.0.1";
+$conn=mysqli_connect($host);
+
+$con=mysqli_select_db($conn, "test");
+if($con)
+    echo "连接正常<br/>";
+
+    
+//向数据库添加数据
+function add(){
+    global $conn;
+$addid=00010;
+for($i=0;$i<20;$i++){
+    $addid+=$i;
+$add="insert into ppp".
+    "(id)".
+    "values".
+    "('$addid')";
+mysqli_query($conn,$add);
+}}
+
+
+$Id=$_POST["ID"];
+echo "删除的ID为".$Id."<br/>";
+drop($Id);
+
+function drop($Idd){
+    global $conn;
+    $dropID="delete from ppp where id=".$Idd;
+    $dropadd=mysqli_query($conn,$dropID);
+    if($dropadd)
+        echo "删除成功<br/>";
+}
+
+
+

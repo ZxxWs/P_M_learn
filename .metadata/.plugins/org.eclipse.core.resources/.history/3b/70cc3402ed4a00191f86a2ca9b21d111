@@ -1,0 +1,27 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>表单提交</title>
+</head>
+
+
+
+<form action="index.php" method="POST">
+
+    注册ID:<input type="text" name="signname">
+    密码:<input type="password" name="signpass">
+    确认密码:<input type="password" name="signpasst"> 
+</form>
+<?php
+
+$pa=$_POST["signpass"];
+$paa=$_POST["signpasst"];
+if($pa!=$paa)
+{echo"两次密码不同";}
+?>
+</body>
+
+
+
+
+

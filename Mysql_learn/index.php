@@ -1,108 +1,117 @@
+
+<meta charset="utf-8"/>
 <?php
 
-//MySQLÔÚPHPÖĞµÄ·½·¨£ºmysqli_function(value,value1....)
+//MySQLåœ¨PHPä¸­çš„æ–¹æ³•ï¼šmysqli_function(value,value1....)
 
 //************************************************************
-//Á¬½ÓMySQL£º
-$host='localhost:3306';                    //¿ÉÑ¡£¬Ö÷»úÃû|IP
-$username='root';          //¿ÉÑ¡£¬MySQLÓÃ»§Ãû
-$password;          //¿ÉÑ¡£¬MySQLÃÜÂë
-$dbname;            //¿ÉÑ¡£¬Ä¬ÈÏÊı¾İ¿â
-$port;                  //¶Ë¿ÚºÅ
-$socket;            //¹æ¶¨socket
+//è¿æ¥MySQLï¼š
+$host='localhost:3306';                    //å¯é€‰ï¼Œä¸»æœºå|IP
+$username='root';          //å¯é€‰ï¼ŒMySQLç”¨æˆ·å
+$password;          //å¯é€‰ï¼ŒMySQLå¯†ç 
+$dbname;            //å¯é€‰ï¼Œé»˜è®¤æ•°æ®åº“
+$port;                  //ç«¯å£å·
+$socket;            //è§„å®šsocket
 $conn=mysqli_connect($host,$username);
-//mysqli_close($link);//¹Ø±ÕÓëÓÚÊı¾İ¿âµÄÁ¬½Ó
+//mysqli_close($link);//å…³é—­ä¸äºæ•°æ®åº“çš„è¿æ¥
 if($conn)
-    echo "Êı¾İ¿âÁ¬½Ó³É¹¦";
+    echo "æ•°æ®åº“è¿æ¥æˆåŠŸ";
 echo "<br />";
 
 //************************************************************
-//´´½¨Êı¾İ¿â
+//åˆ›å»ºæ•°æ®åº“
 $create="create database phpcreat";
 $createdatabase=mysqli_query($conn, $create);
 if($createdatabase)
-    echo "Êı¾İ¿â´´½¨³É¹¦";
-else{
-    die('Á¬½ÓÊ§°Ü: ' . mysqli_error($conn));
-}
+    echo "æ•°æ®åº“åˆ›å»ºæˆåŠŸ";
 echo "<br />";
     
-//É¾³ıÊı¾İ¿â
+//åˆ é™¤æ•°æ®åº“
 $drop="drop database phpcreat";
 $drop=mysqli_query($conn, $drop);
 if($drop)
-    echo "Êı¾İ¿âÉ¾³ı³É¹¦";
+    echo "æ•°æ®åº“åˆ é™¤æˆåŠŸ";
 else{
-    die('Á¬½ÓÊ§°Ü: ' . mysqli_error($conn));
+    die('è¿æ¥å¤±è´¥: ' . mysqli_error($conn));
 }
 echo "<br />";
     
     
 //************************************************************
-//Ñ¡ÔñÊı¾İ¿â
+//é€‰æ‹©æ•°æ®åº“
 $dbname="test";
 $select=mysqli_select_db($conn, $dbname);
 if($select)
-    echo "Êı¾İ¿âÑ¡Ôñ³É¹¦";
+    echo "æ•°æ®åº“é€‰æ‹©æˆåŠŸ";
     else{
-        die('Á¬½ÓÊ§°Ü: ' . mysqli_error($conn));
+        die('è¿æ¥å¤±è´¥: ' . mysqli_error($conn));
     }
 echo "<br />";
     
     
 //************************************************************
-//´´½¨±í
+//åˆ›å»ºè¡¨
 $table="create table phptable(id int)";
 $createtable=mysqli_query($conn, $table);
 if($createtable)
-    echo "´´½¨±í£º¡°id¡±³É¹¦";
+    echo "åˆ›å»ºè¡¨ï¼šâ€œidâ€æˆåŠŸ";
 else{
-    die('Á¬½ÓÊ§°Ü: ' . mysqli_error($conn));
+    die('è¿æ¥å¤±è´¥: ' . mysqli_error($conn));
 }
 echo "<br />";
 
-//É¾³ı±í
+//åˆ é™¤è¡¨
 $droptable="drop table phptable";
 $droptablea=mysqli_query($conn, $droptable);
 if($droptablea)
-    echo "É¾³ı±í¡°id¡±³É¹¦";
+    echo "åˆ é™¤è¡¨â€œidâ€æˆåŠŸ";
 echo "<br/>";
     
 
 //***********************
-// ÉèÖÃ±àÂë£¬·ÀÖ¹ÖĞÎÄÂÒÂë
-mysqli_query($conn , "set names utf8");
+mysqli_query($conn , "set names utf8");// è®¾ç½®ç¼–ç ï¼Œé˜²æ­¢ä¸­æ–‡ä¹±ç 
 //***********************
-//Ïò±íÖĞ²åÈëÊı¾İ¡ª¡ª¡ª¡ª>students:name,num,class  
-$stuname="ÎâËª";
+//å‘è¡¨ä¸­æ’å…¥æ•°æ®â€”â€”â€”â€”>students:name,num,class  
+$stuname="å´éœœ";
 $stunum=1707004101;
 $stuclass=17070144;
+for($i=1;$i<5;$i++){
+    $stunum++;
 $sqldata="insert into students".
          "(name,num,class)".
          "values".
          "('$stuname','$stunum','$stuclass')";
+
 $into=mysqli_query($conn, $sqldata);
 if($into)
-    echo "²åÈëÏà¹ØÑ§ÉúÊı¾İ³É¹¦";
+    echo "æ’å…¥ç›¸å…³å­¦ç”Ÿæ•°æ®æˆåŠŸ";
     echo "<br/>";
+}
+//***********************
+//åœ¨è¡¨ä¸­åˆ é™¤æ•°æ®
+$deletedata="delete from students where num=2";
+$deleteend=mysqli_query($conn,$deletedata);
+if($deleteend)
+    echo "åˆ é™¤æ•°æ®æˆåŠŸ<br/>";
+    
 
     
 //***********************************************************
-//¶ÁÈ¡Êı¾İ¿â
-//¶ÁÈ¡Êı¾İ¿âµÄ·½Ê½¶àÖÖ¶àÑù
+//è¯»å–æ•°æ®åº“
+//è¯»å–æ•°æ®åº“çš„æ–¹å¼å¤šç§å¤šæ ·
 $readdata='select name,num,class from students';
-$selecttable=mysqli_select_db($conn, 'test');//Ñ¡Ôñ±í
+$selecttable=mysqli_select_db($conn, 'test');//é€‰æ‹©è¡¨
 if($selecttable)
-    echo "Ñ¡ÔñÑ§Éú±íµ¥³É¹¦";
+    echo "é€‰æ‹©å­¦ç”Ÿè¡¨å•æˆåŠŸ";
     echo "  ---  \0";
 $readendl=mysqli_query($conn, $readdata);
 if($readendl)
-    echo "¶ÁÈ¡Ñ§ÉúÊı¾İ³É¹¦";
+    echo "è¯»å–å­¦ç”Ÿæ•°æ®æˆåŠŸ";
     echo "<br/>";
     
-echo '<table border="1"><td>ĞÕÃû</td><td>Ñ§ºÅ</td><td>°à¼¶</td></tr>';
-while($whilee=mysqli_fetch_array($readendl,MYSQLI_ASSOC)){//Ã¿´Î¶ÁÈ¡µÄÊı¾İ»á¸´ÖÆ¸ø$whilee
-    echo "<tr><td>{$whilee['name']}</td>".                //²ÎÊıMYSQLI_ASSOC²éÑ¯½á¹û·µ»Ø¹ØÁªÊı¾İ
+echo '<table border="1"><td>å§“   å</td><td>å­¦å·</td><td>ç­çº§</td></tr>';
+while($whilee=mysqli_fetch_array($readendl,MYSQLI_ASSOC)){//æ¯æ¬¡è¯»å–çš„æ•°æ®ä¼šå¤åˆ¶ç»™$whilee
+    echo "<tr><td>{$whilee['name']}</td>".                //å‚æ•°MYSQLI_ASSOCæŸ¥è¯¢ç»“æœè¿”å›å…³è”æ•°æ®
         "<td>{$whilee['num']}</td>".
         "<td>{$whilee['class']}</td>".
         "</tr>";
@@ -110,11 +119,11 @@ while($whilee=mysqli_fetch_array($readendl,MYSQLI_ASSOC)){//Ã¿´Î¶ÁÈ¡µÄÊı¾İ»á¸´ÖÆ
 echo '</table>'."<br/>";
     
     
- //ÊÍ·ÅÄÚ´æ
+ //é‡Šæ”¾å†…å­˜
 mysqli_free_result($readendl);
 $close=mysqli_close($conn);
 if($close)
-    echo "¶Ï¿ªÁ¬½Ó³É¹¦";
+    echo "æ–­å¼€è¿æ¥æˆåŠŸ";
     
     
     
