@@ -1,15 +1,17 @@
+<meta charset="utf-8"/>
 <?php
-//¶Ô×Ö¶ÎµÄ²Ù×÷
+//å¯¹å­—æ®µçš„æ“ä½œ
 
 $host="127.0.0.1";
 $conn=mysqli_connect($host);
 
 $con=mysqli_select_db($conn, "test");
 if($con)
-    echo "Á¬½ÓÕı³£<br/>";
+    echo "è¿æ¥æ­£å¸¸<br/>";
 mysqli_query($conn , "set names utf8");
 
-//add();            //Êı¾İÌí¼Óº¯Êı
+
+//add();            //æ•°æ®æ·»åŠ å‡½æ•°
 function add(){
 global $conn;
 $addid=00010;
@@ -21,41 +23,48 @@ $add="insert into ppp".
     "values".
     "('$addid','$addname[$i]')";
 $addend=mysqli_query($conn,$add);
-if($addend)echo"Ìí¼Ó³É¹¦<br/>";
+if($addend)echo"æ·»åŠ æˆåŠŸ<br/>";
 else{
-    die('Á¬½ÓÊ§°Ü: ' . mysqli_error($conn));
+    die('è¿æ¥å¤±è´¥: ' . mysqli_error($conn));
 }
 echo "<br />";
-
 }}
 
-
-$Id=$_POST["ID"];
-echo "É¾³ıµÄIDÎª".$Id."<br/>";
-//if($Id!="-1 or 1=1")
-//drop($Id);
-//else echo "²ÎÊıÓĞÎó";
+$Id=isset($_POST['ID'])?$_POST['ID']:'';//å¦‚æœä¸ç»è¿‡è¡¨è¾¾ä¹Ÿå¯ä»¥ç›´æ¥è¿è¡Œ
+//$Id=$_POST["ID"];
+if($Id!="-1 or 1=1")
+    drop($Id);
+    else echo "å‚æ•°æœ‰è¯¯";
+if(!empty($Id)){
+    drop($Id);
+    echo "åˆ é™¤çš„IDä¸º".$Id."<br/>";
+}
 
 function drop($Idd){
     global $conn;
     $dropID="delete from ppp where id=".$Idd;
     $dropadd=mysqli_query($conn,$dropID);
     if($dropadd)
-        echo "É¾³ı³É¹¦<br/>";
+        echo "åˆ é™¤æˆåŠŸ<br/>";
     show();
 }
-find($Id);
+
+
+$serch=isset($_GET['ID'])?$_GET['ID']:'';
+if(!empty($serch)){
+    find($Id);
+    
+}
+//
 function find($Id){
     $finddata="select *from ppp where id=".$Id;
     global $conn;
     $data=mysqli_query($conn, $finddata);
-    echo '<table border="1"><td>ID</td><td>ĞÕÃû</td></tr>';
-    while($whilee=mysqli_fetch_array($data,MYSQLI_ASSOC)){//Ã¿´Î¶ÁÈ¡µÄÊı¾İ»á¸´ÖÆ¸ø$whilee
-        echo "<tr><td>{$whilee['id']}</td>".                //²ÎÊıMYSQLI_ASSOC²éÑ¯½á¹û·µ»Ø¹ØÁªÊı¾İ
-            "<td>{$whilee['name']}</td>".
-            "</tr>";
-    }
-    echo '</table>'."<br/>";
+ 
+    while($row = mysqli_fetch_array($data, MYSQLI_ASSOC)){//æ¯æ¬¡è¯»å–çš„æ•°æ®ä¼šå¤åˆ¶ç»™$whilee
+        echo "{$row['id']}";
+    } 
+
 }
 
 
@@ -63,18 +72,18 @@ function find($Id){
 function show(){
 $readdata='select id,name from ppp';
 global $conn;
-$selecttable=mysqli_select_db($conn, 'test');//Ñ¡Ôñ±í
+$selecttable=mysqli_select_db($conn, 'test');//é€‰æ‹©è¡¨
 if($selecttable)
-    echo "Ñ¡ÔñÑ§Éú±íµ¥³É¹¦";
+    echo "é€‰æ‹©å­¦ç”Ÿè¡¨å•æˆåŠŸ";
     echo "  ---  \0";
     $readendl=mysqli_query($conn, $readdata);
     if($readendl)
-        echo "¶ÁÈ¡Ñ§ÉúÊı¾İ³É¹¦";
+        echo "è¯»å–å­¦ç”Ÿæ•°æ®æˆåŠŸ";
         echo "<br/>";
         
-        echo '<table border="1"><td>ID</td><td>ĞÕÃû</td></tr>';
-        while($whilee=mysqli_fetch_array($readendl,MYSQLI_ASSOC)){//Ã¿´Î¶ÁÈ¡µÄÊı¾İ»á¸´ÖÆ¸ø$whilee
-            echo "<tr><td>{$whilee['id']}</td>".                //²ÎÊıMYSQLI_ASSOC²éÑ¯½á¹û·µ»Ø¹ØÁªÊı¾İ
+        echo '<table border="1"><td>ID</td><td>å§“å</td></tr>';
+        while($whilee=mysqli_fetch_array($readendl,MYSQLI_ASSOC)){//æ¯æ¬¡è¯»å–çš„æ•°æ®ä¼šå¤åˆ¶ç»™$whilee
+            echo "<tr><td>{$whilee['id']}</td>".                //å‚æ•°MYSQLI_ASSOCæŸ¥è¯¢ç»“æœè¿”å›å…³è”æ•°æ®
                 "<td>{$whilee['name']}</td>".
                 "</tr>";
         }

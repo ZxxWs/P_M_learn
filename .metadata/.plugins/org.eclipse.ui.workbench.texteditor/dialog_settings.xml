@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item value="&lt;body&gt;" key="selection"/>
+		<item value="&#x0D;&#x0A;//if($Id!=&quot;-1 or 1=1&quot;)&#x0D;&#x0A;    //drop($Id);&#x0D;&#x0A;    //else echo &quot;参数有误&quot;;" key="selection"/>
 		<list key="findhistory">
+			<item value="&#x0D;&#x0A;//if($Id!=&quot;-1 or 1=1&quot;)&#x0D;&#x0A;    //drop($Id);&#x0D;&#x0A;    //else echo &quot;参数有误&quot;;"/>
 			<item value="&lt;body&gt;"/>
 			<item value=""/>
 		</list>
